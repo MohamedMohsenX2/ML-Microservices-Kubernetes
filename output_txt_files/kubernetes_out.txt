@@ -1,1 +1,24 @@
-<paste log output from Kubernetes-mediated prediction, here>
+==================== OUTPUT OF Kubernetes run ============================
+❯ ./run_kubernetes.sh
+pod/mlapp created
+NAME    READY   STATUS              RESTARTS   AGE
+mlapp   0/1     ContainerCreating   0          0s
+error: unable to forward port because pod is not running. Current status=Pending
+❯ kubectl get pod
+NAME    READY   STATUS    RESTARTS   AGE
+mlapp   1/1     Running   0          68s
+❯ ./run_kubernetes.sh
+Error from server (AlreadyExists): pods "mlapp" already exists
+NAME    READY   STATUS    RESTARTS   AGE
+mlapp   1/1     Running   0          71s
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
+==================== OUTPUT OF Predication ===============================
+❯ ./make_prediction.sh
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
